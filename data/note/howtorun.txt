@@ -1,0 +1,22 @@
+require libs: argparse, py_vncorenlp, elasticsearch, ragatouille, sentence_transformer, datasets, torch, scikit-learn
+
+law-flatten.py: python law-flatten.py --law_path <path_to_law_json> --mapping_path <path_to_mapping_json> --output_path <path_to_output_json>
+
+segment.py: python segment.py --lib_path <path_to_VnCoreNLP> --data_path <path_to_input_data> --output_path <path_to_segmented_data>
+
+seperate.py: python separate.py --data_path <path_to_data> --train_weight <train_split_ratio> --dev_weight <dev_split_ratio> --train_output <path_to_train_set> --dev_output <path_to_dev_set> --test_output <path_to_test_set>
+
+ranking_bm25.py: python ranking_bm25.py --elastic_link YOUR_ELASTICSEARCH_LINK --elastic_api_key YOUR_ELASTICSEARCH_API_KEY --index_name YOUR_INDEX_NAME --law_path /path/to/law_data.json --query_path /path/to/query_data.json --num_results NUMBER_OF_RESULTS_WANTED --output_path /path/to/output.json
+
+convert.py: python convert.py --data /path/to/ranking_output.json --output /path/to/converted_output.json --law_data /path/to/law_data.json --type train_or_infer (input is output of ranking_bm25.py)
+
+colbert-model.py: python colbert-model.py --train-path <path_to_training_data> --law-path <path_to_law_corpus> --data-out-path <path_to_save_processed_data> (trained model is saved at .../checkpoints/colbert)
+
+infer-colbert.py: python infer_colbert.py --data-path <path_to_inference_data> --law-path <path_to_law_corpus> --model-path <path_to_trained_model> --output-path <path_for_output_csv>
+
+contrastive-model.py: python contrastive-model.py --train-path <path_to_training_data> --dev-path <path_to_dev_data> --test-path <path_to_test_data> --output-dir <path_to_output_directory>
+
+infer_contrastive.py: python infer_contrastive.py --data-path <path_to_data> --model-path <path_to_trained_model> --output-csv-file <path_to_output_csv>
+
+
+

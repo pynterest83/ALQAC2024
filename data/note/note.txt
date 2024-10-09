@@ -1,0 +1,52 @@
+﻿Bộ luật: law.json
+Train đã qua xử lý: train.json (100 samples)
+Train chưa xác thực: unverified_train.json (430 samples)
+task1: additional_data/zalo
+public_test.json 
+
+
+Task1: tìm ra law_id và article_id.
+Task2: cho trước query và kết quả -> xác định True/False
+
+
+Prompting: 
+Score_bm25
+Score_Bert
+-> Score_new bằng tổng trung bình có trọng số S ranking-phrase dùng trên tập dev.
+-> Top 50 Score max -> LLM (GPT4, Gemini) -> Ranking gắn điểm lại -> output LLM Score kết hợp với Score_new -> Ranking -> chọn ra phần tốt nhất
+
+
+Viết lại train.json
+       Law-id-mapping.json
+Law-flatten.json
+Khảo sát dữ liệu: lỗi law.json
+   Sử dụng dữ liệu dạng đúng/sai trước
+   Chưa sử dụng 
+   Phân tích xem mô hình đúng hay sai ở đâu, những sample bị sai
+Tính F2
+File format sẽ giống train.json
+Output F2, precision, recall của từng sample
+Sample
+Predict ra nhiều kết quả -> cho từng sample
+Công thức trong aqlac2024
+⇒ Tập f2 và f2 trung bình
+
+Thống kê dữ liệu:
++ Số lượng điều luật
++ Số lượng từ mỗi điều luật
++ Histogram số từ mỗi điều luật
++ Histogram số từ trên tất cả query
+
+BM25
+Chia bộ dữ liệu: train, dev, test (0.8, 0.1, 0.1): Chia ngẫu nhiên -> ouput 3 file (data.train.json, data.dev.json, data.test.json)
+Bm25: query với law.json 
+Chạy bm25 -> output 3 file (data.train.bm25,json)
+Format: file gốc train.json + score_bm25
+Điểm raw
+2 phương án: không tiền xử lý, Segmentation (những từ phải ghép với nhau thì mới có nghĩa) sử dụng VnCoreNLP (tên file bm25-nonsegment.json và segment.json)
+
+
+
+
+
+
