@@ -1,0 +1,1 @@
+Task 1 Information Retrieval for ALQAC2024 Competition - KSE2024
